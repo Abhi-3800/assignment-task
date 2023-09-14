@@ -1,0 +1,26 @@
+<% if @users.count <= 0 %>
+  <h2 class="text-center mt-2">No users found. Please import data first.</h2>
+<% else %>
+  <h2 class="text-center mt-2">Users List</h2>
+  <table class="table table-bordered">
+    <thead class="heading thead-dark">
+      <tr>
+        <th scope="col">FIRST_NAME: </th>
+        <th scope="col">LAST_NAME: </th>
+        <th scope="col">EMAIL_ID: </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<div class="text-center mb-4">
+  <%= link_to 'Home', root_path, class: 'btn btn-primary' %>
+</div>

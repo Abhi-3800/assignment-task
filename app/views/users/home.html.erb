@@ -1,0 +1,32 @@
+<div class="text-center mt-4">
+  <%= form_with(url: users_path, method: 'post', local: true, multipart: true) do |form| %>
+    <%= form.file_field :excel_file, accept: ".xls, .xlsx" %>
+    <%= form.submit 'Import CSV' %>
+  <% end %>
+</div>
+<div class="text-center mt-5">
+  <%= link_to 'View Users', users_path, class: 'btn btn-primary' %> 
+</div>
+<% if @users.count <= 0 %>
+  <h2 class="text-center mt-4">No users found. Please import data first.</h2>
+<% else %>
+  <h2 class="text-center mt-4">Users List</h2>
+  <table class="table table-bordered">
+    <thead class="heading thead-dark">
+      <tr>
+        <th scope="col">First Name: </th>
+        <th scope="col">Last Name: </th>
+        <th scope="col">Email: </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
